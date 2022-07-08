@@ -21,12 +21,12 @@ app.get("/:station", function (req, res, next) {
       console.log(error);
     }
 
-    const xmlToJson = convert.xml2json(body, { compact: true, spaces: 4 }); // xml을 json 형식 문자열로 추출
-    var data = JSON.parse(xmlToJson).realtimeStationArrival.row; // JSON 문자열 객체로 변환 후 실제 도착 시간이 있는 row 객체들만 추출
+    const xmlToJson = convert.xml2json(body, { compact: true, spaces: 4 }); 
+    var data = JSON.parse(xmlToJson).realtimeStationArrival.row; 
     var dataStr = `${req.params.station}<br/>`;
     for (i in data) {
       if (
-        data[i].subwayId._text == "1002" // 현재 2호선을 개발 중이므로 2호선 식별번호를 가진 데이터들만 선택함
+        true //  data[i].subwayId._text == "1002" 
       ) {
         console.log(`${data[i].trainLineNm._text} : ${data[i].barvlDt._text}초 후 `);
         dataStr += `${data[i].trainLineNm._text} : ${data[i].barvlDt._text}초 후 <br/>`;

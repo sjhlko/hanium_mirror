@@ -14,8 +14,8 @@ app.use(morgan('dev'));
 
 const key = '67665a5268716a7637305252586872'; //인증키
 let month = 202202;
-let line = 5;
-let station = "올림픽공원(한국체대)"
+let line = "2";
+let station = "당산"
 const myaddr = encodeURI(`http://openapi.seoul.go.kr:8088/67665a5268716a7637305252586872/xml/CardSubwayTime/1/5/${month}/${line}호선/${station}/`);
 
 
