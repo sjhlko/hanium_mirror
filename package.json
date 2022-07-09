@@ -1,0 +1,43 @@
+{
+  "name": "hanium_stp_server",
+  "version": "1.0.0",
+  "description": "Smart TransPortation",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qjvk2880/Hanium_STP_Server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qjvk2880/Hanium_STP_Server/issues"
+  },
+  "homepage": "https://github.com/qjvk2880/Hanium_STP_Server#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.16",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.3",
+    "pm2": "^5.2.0",
+    "request": "^2.88.2",
+    "sequelize": "^6.21.2",
+    "sequelize-auto": "^0.8.8",
+    "xml-js": "^1.6.11"
+  }
+}
