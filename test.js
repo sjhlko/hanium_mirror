@@ -1,18 +1,19 @@
-const express = require('express');
-let path = require('path');
-const morgan = require('morgan');
-const request = require('request');
-const convert = require('xml-js');
+import express from 'express';
+import path from 'path';
+import morgan from 'morgan';
+import request from 'request';
+import convert from 'xml-js';
+import config from './config';
 
 const app = express();
 app.set('port', process.env.PORT || 3001);
 app.use(morgan('dev'));
 
-const key = '4b7575636e716a7635376552784e49'; //인증키
+const ArriveTimekey = config.ArriveTimeKey;
 
 app.get('/:station', function (req, res, next) {
   const apiAddress = encodeURI(
-    `http://swopenAPI.seoul.go.kr/api/subway/${key}/xml/realtimeStationArrival/0/5/${req.params.station}`,
+    `http://swopenAPI.seoul.go.kr/api/subway/${ArriveTimekey}/xml/realtimeStationArrival/0/5/${req.params.station}`,
   );
   request(apiAddress, function (error, response, body) {
     if (error) {
@@ -37,9 +38,11 @@ app.get('/:station', function (req, res, next) {
   });
 });
 
+
+const rideAlightKey = config.rideAlightKey;
 app.get('/:month/:line/:station', function (req, res, next) {
   const myaddr = encodeURI(
-    `http://openapi.seoul.go.kr:8088/67665a5268716a7637305252586872/xml/CardSubwayTime/1/5/${req.params.month}/${req.params.line}호선/${req.params.station}/`,
+    `http://openapi.seoul.go.kr:8088/${rideAlightKey}/xml/CardSubwayTime/1/5/${req.params.month}/${req.params.line}호선/${req.params.station}/`,
   );
   request(myaddr, function (error, response, body) {
     if (error) {
@@ -60,6 +63,7 @@ app.get('/:month/:line/:station', function (req, res, next) {
     res.send(str);
   });
 });
+
 app.listen(app.get('port'), () => {
   console.log(app.get('port'), '번 포트에서 대기 중');
 });
