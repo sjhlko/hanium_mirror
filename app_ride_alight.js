@@ -1,8 +1,8 @@
-const express = require('express');
-let path = require('path');
-const morgan = require('morgan');
-const request = require('request');
-const convert = require('xml-js');
+import express from 'express';
+import path from 'path';
+import morgan from 'morgan';
+import request from 'request';
+import convert from 'xml-js';
 
 import config from './config';
 

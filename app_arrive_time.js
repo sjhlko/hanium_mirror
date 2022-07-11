@@ -1,10 +1,10 @@
-const express = require('express');
-let path = require('path');
-const morgan = require('morgan');
-const request = require('request');
-const convert = require('xml-js');
+import express from 'express';
+import path from 'path';
+import morgan from 'morgan';
+import request from 'request';
+import convert from 'xml-js';
 
-import config from './config';
+import config from './config/index.js';
 
 const app = express();
 app.set('port', process.env.PORT || 3001);
@@ -26,7 +26,7 @@ app.get('/:station', function (req, res, next) {
     const xmlToJson = convert.xml2json(body, { compact: true, spaces: 4 });
     var data = JSON.parse(xmlToJson).realtimeStationArrival.row;
     var dataStr = `${req.params.station}<br/>`;
-    for (i in data) {
+    for (let i in data) {
       if (
         true //  data[i].subwayId._text == "1002"
       ) {
