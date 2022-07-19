@@ -76,7 +76,7 @@ app.get('/:month/:line/:station', function (req, res, next) {
     console.log(data);
     var str = '';
 
-    for (time in data) {
+    for (let time in data) {
       str += `${time} : ${data[`${time}`]._text}<br>`; //브라우저에  표시
 
       console.log(`${time} : ${data[`${time}`]._text}`); //콘솔에 시간대별 승객수 출력
