@@ -1,16 +1,15 @@
 import { Router } from 'express';
-import users from '../../models/user.js';
+import { UserService } from '../../services/user.js';
 const route = Router();
+const userServiceInstance = new UserService();
 
 export default app => {
   app.use('/users', route);
 
   //유저 정보 확인
   route.get('/:id', async (req, res) => {
-    const user = await users.findOne({
-      where: { user_id: req.params.id },
-    });
-    console.log(user);
+    const userId = req.params.id;
+    const user = await userServiceInstance.getUserById(userId);
     return res.json(user);
   });
 };
