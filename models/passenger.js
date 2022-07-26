@@ -4,13 +4,13 @@ const { Model, Sequelize } = _sequelize;
 export default class passenger extends Model {
   static init(sequelize, DataTypes) {
   return super.init({
-    statn_id: {
+    station_id: {
       type: DataTypes.STRING(20),
       allowNull: false,
       primaryKey: true,
       references: {
         model: 'station',
-        key: 'statn_id'
+        key: 'station_id'
       }
     },
     line_id: {
@@ -42,7 +42,7 @@ export default class passenger extends Model {
         using: "BTREE",
         fields: [
           { name: "passenger_time" },
-          { name: "statn_id" },
+          { name: "station_id" },
           { name: "line_id" },
         ]
       },
@@ -50,7 +50,7 @@ export default class passenger extends Model {
         name: "FK_station_TO_passenger_1",
         using: "BTREE",
         fields: [
-          { name: "statn_id" },
+          { name: "station_id" },
         ]
       },
       {
