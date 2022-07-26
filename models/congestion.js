@@ -1,17 +1,18 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class bookmarked_station extends Model {
+export default class congestion extends Model {
   static init(sequelize, DataTypes) {
   return super.init({
-    user_id: {
-      type: DataTypes.STRING(20),
+    month: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      references: {
-        model: 'user',
-        key: 'user_id'
-      }
+      primaryKey: true
+    },
+    time: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
     },
     station_id: {
       type: DataTypes.STRING(20),
@@ -33,7 +34,7 @@ export default class bookmarked_station extends Model {
     }
   }, {
     sequelize,
-    tableName: 'bookmarked_station',
+    tableName: 'congestion',
     timestamps: false,
     indexes: [
       {
@@ -41,20 +42,21 @@ export default class bookmarked_station extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "user_id" },
+          { name: "month" },
+          { name: "time" },
           { name: "station_id" },
           { name: "line_id" },
         ]
       },
       {
-        name: "FK_station_TO_bookmarked_station_1",
+        name: "FK_station_TO_congestion_1",
         using: "BTREE",
         fields: [
           { name: "station_id" },
         ]
       },
       {
-        name: "FK_station_TO_bookmarked_station_2",
+        name: "FK_station_TO_congestion_2",
         using: "BTREE",
         fields: [
           { name: "line_id" },

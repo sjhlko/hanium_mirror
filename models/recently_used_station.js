@@ -13,13 +13,13 @@ export default class recently_used_station extends Model {
         key: 'user_id'
       }
     },
-    statn_id: {
+    station_id: {
       type: DataTypes.STRING(20),
       allowNull: false,
       primaryKey: true,
       references: {
         model: 'station',
-        key: 'statn_id'
+        key: 'station_id'
       }
     },
     line_id: {
@@ -42,7 +42,7 @@ export default class recently_used_station extends Model {
         using: "BTREE",
         fields: [
           { name: "user_id" },
-          { name: "statn_id" },
+          { name: "station_id" },
           { name: "line_id" },
         ]
       },
@@ -50,7 +50,7 @@ export default class recently_used_station extends Model {
         name: "FK_station_TO_recently_used_station_1",
         using: "BTREE",
         fields: [
-          { name: "statn_id" },
+          { name: "station_id" },
         ]
       },
       {
