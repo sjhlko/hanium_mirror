@@ -44,4 +44,10 @@ export default class station extends Model {
       },
     );
   }
+  static async findByStationId(stationId, attributes) {
+    return await this.findOne({
+      attributes: attributes,
+      where: { station_id: stationId },
+    });
+  }
 }
