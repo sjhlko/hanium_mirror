@@ -29,4 +29,11 @@ export default class line extends Model {
     ]
   });
   }
+
+  static async findByLineId(lineId, attributes) {
+    return await this.findOne({
+      attributes: attributes,
+      where: { line_id: lineId },
+    });
+  }
 }

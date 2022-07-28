@@ -13,9 +13,13 @@ export default app => {
     middlewares.requestArriveTimeOpenApi,
     middlewares.getRealTime,
     async (req, res) => {
-      const station = await stationServiceInstance.getStationByStationId(
-        req.params.stationId,
-      );
+      const station = {
+        stationName: req.stationName,
+        stationId: req.stationId,
+        lineId: req.lineId,
+        arriveInfo: req.realTimeArray
+      }
+      console.log(station);
       return res.json(station);
     },
   );
