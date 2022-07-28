@@ -7,11 +7,13 @@ const stationServiceInstance = new StationService();
 const requestArriveTimeOpenApi = async (req, res, next) => {
   const ArriveTimekey = config.arriveTimeKey;
 
-  const station = await stationServiceInstance.getStationByStationId(req.params.stationId);
+  const station = await stationServiceInstance.getStationByStationId(
+    req.params.stationId,
+  );
 
-  const lineId = station.dataValues.line_id;
-  const stationName = station.dataValues.station_name;
-  const stationId = station.dataValues.station_id;
+  const lineId = station.line_id;
+  const stationName = station.station_name;
+  const stationId = station.station_id;
 
   const apiAddress = encodeURI(
     `http://swopenAPI.seoul.go.kr/api/subway/${ArriveTimekey}/xml/realtimeStationArrival/0/5/${stationName}`,

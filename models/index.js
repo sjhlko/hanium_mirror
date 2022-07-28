@@ -23,7 +23,9 @@ const models = {
   User: user,
 };
 
-const sequelize = new Sequelize(config.databaseURL);
+const sequelize = new Sequelize(config.databaseURL, {
+  query: { raw: true },
+});
 
 export { models };
 export default sequelize;
