@@ -8,4 +8,8 @@ export class StationService {
   async getStationByStationId(stationId) {
     return await models.Station.findByStationId(stationId, this.stationAttributes);
   }
+
+  async getAllStationByStationName(stationName) {
+    return await models.Station.findAllByStationName(stationName, this.stationAttributes);
+  }
 }

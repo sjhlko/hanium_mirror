@@ -50,4 +50,11 @@ export default class station extends Model {
       where: { station_id: stationId },
     });
   }
+
+  static async findAllByStationName(stationName, attributes) {
+    return await this.findAll({
+      attributes: attributes,
+      where: { station_name: stationName },
+    });
+  }
 }

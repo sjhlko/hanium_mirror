@@ -4,8 +4,8 @@ import sortRealTimeArray from '../../library/sortRealTimeArray.js';
 
 const getRealTime = async (req, res, next) => {
   const openApiResult = req.openApiResult;
-  const lineId = req.lineId;
-  let realTimeArray = await library.parseRealTime(openApiResult, lineId);
+  const linesArray = req.linesArray;
+  let realTimeArray = await library.parseRealTime(openApiResult);
   realTimeArray = await sortRealTimeArray(realTimeArray);
   req.realTimeArray = realTimeArray;
   next();

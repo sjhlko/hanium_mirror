@@ -2,7 +2,7 @@ import convert from 'xml-js';
 import { LineService } from '../services/line.js';
 const lineServiceInstance = new LineService();
 
-const parseRealTime = async (openApiResult, lineId) => {
+const parseRealTime = async (openApiResult) => {
   const xmlToJson = convert.xml2json(openApiResult, {
     compact: true,
     spaces: 4,

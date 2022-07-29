@@ -15,8 +15,8 @@ export default app => {
     async (req, res) => {
       const station = {
         stationName: req.stationName,
-        stationId: req.stationId,
-        lineId: req.lineId,
+        //stationId: req.stationId,
+        lines: req.lines,
         arriveInfo: req.realTimeArray
       }
       console.log(station);
