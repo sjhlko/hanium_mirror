@@ -1,3 +1,5 @@
 import requestArriveTimeOpenApi from './requestArriveTimeOpenApi.js';
 import getRealTime from './getRealTime.js';
-export default { requestArriveTimeOpenApi, getRealTime };
+import inCaseStationName from './inCaseStationName.js';
+import inCaseStationId from './inCaseStationId.js';
+export default { requestArriveTimeOpenApi, getRealTime, inCaseStationName, inCaseStationId };
