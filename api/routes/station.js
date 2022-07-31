@@ -12,7 +12,7 @@ export default app => {
     '/arrive-info/:stationId',
     middlewares.requestArriveTimeOpenApi,
     middlewares.getRealTime,
-    middlewares.makeLinesArrayByStationIds,
+    middlewares.makeLinesArray,
     async (req, res) => {
       const station = {
         stationName: req.stationName,
@@ -27,7 +27,6 @@ export default app => {
   route.get(
     '/gps/:longtitude/:latitude',
     middlewares.getNearestStation,
-    async (req, res) => {
-    },
+    async (req, res) => {},
   );
 };

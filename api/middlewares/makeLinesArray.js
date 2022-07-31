@@ -3,7 +3,7 @@ import { StationService } from '../../services/station.js';
 const lineServiceInstance = new LineService();
 const stationServiceInstance = new StationService();
 
-const makeLinesArrayByStationIds = async (req, res, next) => {
+const makeLinesArrayationIds = async (req, res, next) => {
   const stationName = req.stationName;
   const stations = await stationServiceInstance.getAllStationByStationName(
     stationName,
@@ -24,4 +24,4 @@ const makeLinesArrayByStationIds = async (req, res, next) => {
   next();
 };
 
-export default makeLinesArrayByStationIds;
+export default makeLinesArrayationIds;
