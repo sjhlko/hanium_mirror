@@ -12,6 +12,7 @@ export default app => {
     '/arrive-info/:stationId',
     middlewares.requestArriveTimeOpenApi,
     middlewares.getRealTime,
+    middlewares.makeLinesArrayByStationIds,
     async (req, res) => {
       const station = {
         stationName: req.stationName,

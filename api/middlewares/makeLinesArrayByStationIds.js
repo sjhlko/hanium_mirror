@@ -1,7 +1,13 @@
-import { LineService } from '../services/line.js';
+import { LineService } from '../../services/line.js';
+import { StationService } from '../../services/station.js';
 const lineServiceInstance = new LineService();
+const stationServiceInstance = new StationService();
 
-const makeLinesArrayByStationIds = async stations => {
+const makeLinesArrayByStationIds = async (req, res, next) => {
+  const stationName = req.stationName;
+  const stations = await stationServiceInstance.getAllStationByStationName(
+    stationName,
+  );
   let lines = [];
   for (let i in stations) {
     let lineElement = await lineServiceInstance.getLineByLineId(
@@ -14,7 +20,8 @@ const makeLinesArrayByStationIds = async stations => {
     };
     lines.push(lineObject);
   }
-  return lines;
+  req.lines = lines;
+  next();
 };
 
 export default makeLinesArrayByStationIds;
