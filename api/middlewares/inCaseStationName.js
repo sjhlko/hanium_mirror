@@ -11,7 +11,7 @@ const inCaseStationName = async (req, res, next) => {
     const stations = await stationServiceInstance.getAllStationByStationName(
       stationName,
     );
-    const lines = await library.makeLinesArray(stations);
+    const lines = await library.makeLinesArrayByStationIds(stations);
 
     req.stationName = stationName;
     req.lines = lines;

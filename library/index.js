@@ -1,5 +1,12 @@
 import parseRealTime from './parseRealTime.js';
 import sortRealTimeArray from './sortRealTimeArray.js';
-import makeLinesArray from './makeLinesArray.js';
-import isStationName from './isStationName.js'
-export default { parseRealTime, sortRealTimeArray, makeLinesArray, isStationName };
+import makeLinesArrayByStationIds from './makeLinesArrayByStationIds.js';
+import isStationName from './isStationName.js';
+import getSquareCoordinates from './getSquareCoordinates.js';
+export default {
+  parseRealTime,
+  sortRealTimeArray,
+  makeLinesArrayByStationIds,
+  isStationName,
+  getSquareCoordinates,
+};

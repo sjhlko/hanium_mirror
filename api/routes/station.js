@@ -17,6 +17,7 @@ export default app => {
         stationName: req.stationName,
         lines: req.lines
       }
+      console.log(station);
       res.json(station);
     },
   );
@@ -35,6 +36,13 @@ export default app => {
       };
       console.log(station);
       return res.json(station);
+    },
+  );
+
+  route.get(
+    '/gps/:longtitude/:latitude',
+    middlewares.getNearestStation,
+    async (req, res) => {
     },
   );
 };

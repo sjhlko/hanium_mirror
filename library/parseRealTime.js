@@ -7,7 +7,13 @@ const parseRealTime = async (openApiResult) => {
     compact: true,
     spaces: 4,
   });
+
   const data = JSON.parse(xmlToJson);
+  const errorCode = 'INFO-200'
+  if (data.RESULT.code._text == errorCode) {
+    return data.RESULT;
+  }
+
   const realtimeRows = data.realtimeStationArrival.row;
   let realTimeArray = [];
   if (Array.isArray(realtimeRows)) {

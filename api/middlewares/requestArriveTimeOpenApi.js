@@ -14,19 +14,21 @@ const requestArriveTimeOpenApi = async (req, res, next) => {
   );
 
   const stationName = station.station_name;
-  //const stationId = station.station_id;
 
   const apiAddress = encodeURI(
     `http://swopenAPI.seoul.go.kr/api/subway/${ArriveTimekey}/xml/realtimeStationArrival/0/5/${stationName}`,
   );
- //line array 생성 코드
-  const stations = await stationServiceInstance.getAllStationByStationName(stationName);
-  const lines = await library.makeLinesArray(stations);
-  request(apiAddress, function (error, response, body) {
+
+  //line array 생성 코드
+  const stations = await stationServiceInstance.getAllStationByStationName(
+    stationName,
+  );
+  const lines = await library.makeLinesArrayByStationIds(stations);
+
+  request(apiAddress, (error, response, body) => {
     if (!error && response.statusCode === 200) {
       req.openApiResult = body;
       req.lines = lines;
-      //req.stationId = stationId;
       req.stationName = stationName;
       next();
     } else {
