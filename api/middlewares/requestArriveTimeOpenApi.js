@@ -16,9 +16,9 @@ const requestArriveTimeOpenApi = async (req, res, next) => {
   const stationName = station.station_name;
 
   const apiAddress = encodeURI(
-    `http://swopenAPI.seoul.go.kr/api/subway/${ArriveTimekey}/xml/realtimeStationArrival/0/5/${stationName}`,
+    `http://swopenAPI.seoul.go.kr/api/subway/${ArriveTimekey}/xml/realtimeStationArrival/0/30/${stationName}`,
   );
-  
+
   request(apiAddress, (error, response, body) => {
     if (!error && response.statusCode === 200) {
       req.openApiResult = body;

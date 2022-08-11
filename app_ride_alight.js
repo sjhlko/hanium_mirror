@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import request from 'request';
 import convert from 'xml-js';
 
-import config from './config';
+import config from './config/index.js?';
 
 const app = express();
 app.set('port', process.env.PORT || 3001);
@@ -16,9 +16,9 @@ app.use(morgan('dev'));
 
 //const key = '67665a5268716a7637305252586872'; //인증키
 const key = config.rideAlightKey;
-let month = 202202;
-let line = '2';
-let station = '당산';
+let month = 202108;
+let line = '6';
+let station = '광흥창(서강)';
 const myaddr = encodeURI(
   `http://openapi.seoul.go.kr:8088/67665a5268716a7637305252586872/xml/CardSubwayTime/1/5/${month}/${line}호선/${station}/`,
 );
@@ -31,12 +31,8 @@ app.get('/', function (req, res, next) {
     const xmlToJson = convert.xml2json(body, { compact: true, spaces: 4 }); // xml을 json 형식 문자열로 추출
     var data = JSON.parse(xmlToJson).CardSubwayTime.row; //json 문자열 객체로 변환 후 실제 시간별 승객수 들어있는 row 데이터만 꺼냄
     var str = '';
-
-    for (time in data) {
-      str += `${time} : ${data[`${time}`]._text}<br>`; //브라우저에  표시
-
-      console.log(`${time} : ${data[`${time}`]._text}`); //콘솔에 시간대별 승객수 출력
-    }
+    console.log(data);
+  
 
     res.send(str);
   });
