@@ -8,26 +8,29 @@ const stationServiceInstance = new StationService();
 
 const requestArriveTimeOpenApi = async (req, res, next) => {
   const ArriveTimekey = config.arriveTimeKey;
-
   const station = await stationServiceInstance.getStationByStationId(
     req.params.stationId,
   );
-
   const stationName = station.station_name;
-
   const apiAddress = encodeURI(
-    `http://swopenAPI.seoul.go.kr/api/subway/${ArriveTimekey}/xml/realtimeStationArrival/0/30/${stationName}`,
+    `http://swopenAPI.seoul.go.kr/api/subway/${ArriveTimekey}/json/realtimeStationArrival/0/30/${stationName}`,
   );
 
   request(apiAddress, (error, response, body) => {
-    if (!error && response.statusCode === 200) {
-      req.openApiResult = body;
+    if (error) {
+      return next(new Error('failed to connect openApi'));
+    }
+
+    const openApiResult = JSON.parse(body);
+  
+    if ('realtimeArrivalList' in openApiResult) {
+      req.openApiResult = openApiResult;
       req.stationName = stationName;
       next();
     } else {
-      console.log('에러');
-      next();
+      return res.json(openApiResult);
     }
+   
   });
 };
 

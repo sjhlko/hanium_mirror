@@ -7,11 +7,12 @@ const addCongestion = async (realTimeArray) => {
     const day = now.getDay();
     const hour = now.getHours(); 
     const dayWeightedValue = [0.7, 1.1, 1.1, 1, 1, 1.2, 0.9];
-    console.log(month, day, hour);
+
     for (let i in realTimeArray) {
         const congestionData = await congestionServiceInstance.getCongestionByStationId(month, hour, realTimeArray[i].stationId);
-        realTimeArray[i].congestion = congestionData.congestion * dayWeightedValue[day];
+        realTimeArray[i].congestion = Math.floor(congestionData.congestion * dayWeightedValue[day]);
     }
+    
     return realTimeArray;
 }
 export default addCongestion;

@@ -20,4 +20,8 @@ export default app => {
       return res.json(station);
     },
   );
+
+  app.use((error, req, res, next) => {
+    return res.json({errorMessage: error.message});
+  })
 };
