@@ -31,6 +31,10 @@ export default class congestion extends Model {
         model: 'station',
         key: 'line_id'
       }
+    },
+    congestion: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {
     sequelize,
