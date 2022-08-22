@@ -50,7 +50,35 @@ export default class user extends Model {
     });
   }
 
-  static async createUser(newUser) {
-    return await this.create(newUser);
+  static async findOrCreateUser(userInfo) {
+    return await this.findOrCreate({
+      where: { user_id: userInfo.userId },
+      defaults: {
+        speed: userInfo.speed,
+        age_range: userInfo.ageRange,
+        gender: userInfo.gender,
+        password: userInfo.password,
+      },
+    });
+  }
+
+  static async updateUser(userId, userInfo) {
+    return await this.update(
+      {
+        speed: userInfo.speed,
+        age_range: userInfo.ageRange,
+        gender: userInfo.gender,
+        password: userInfo.password,
+      },
+      {
+        where: { user_id: userId },
+      },
+    );
+  }
+
+  static async destroyUser(userId) {
+    return await this.destroy({
+      where: { user_id: userId },
+    });
   }
 }
