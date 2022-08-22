@@ -1,4 +1,5 @@
 import _sequelize from 'sequelize';
+import { Op } from "sequelize";
 const { Model, Sequelize } = _sequelize;
 
 export default class station_exit extends Model {
@@ -65,5 +66,14 @@ export default class station_exit extends Model {
         ],
       },
     );
+  }
+  static async findAllBySquareCoordinates(squareCoordinates, attributes) {
+    return await this.findAll({
+      attributes: attributes,
+      where: {
+        exit_longtitude: { [Op.between]: [squareCoordinates.topLeftLongtitude, squareCoordinates.bottomRightLongtitude] },
+        exit_latitude: { [Op.between]: [squareCoordinates.bottomRightLatitude, squareCoordinates.topLeftLatitude] },
+      },
+    });
   }
 }

@@ -6,21 +6,22 @@ const stationServiceInstance = new StationService();
 
 export default app => {
   app.use('/stations', route);
-
-  // 역 정보 확인
+  
+  //도착정보 확인
   route.get(
-    '/:stationId',
+    '/arrive-info/:stationId',
     middlewares.requestArriveTimeOpenApi,
     middlewares.getRealTime,
     async (req, res) => {
       const station = {
-        stationName: req.stationName,
-        stationId: req.stationId,
-        lineId: req.lineId,
         arriveInfo: req.realTimeArray
-      }
-      console.log(station);
+      };
+      
       return res.json(station);
     },
   );
+
+  app.use((error, req, res, next) => {
+    return res.json({errorMessage: error.message});
+  })
 };
