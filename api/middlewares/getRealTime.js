@@ -1,12 +1,11 @@
 import library from '../../library/index.js'
-import sortRealTimeArray from '../../library/sortRealTimeArray.js';
-
 
 const getRealTime = async (req, res, next) => {
   const openApiResult = req.openApiResult;
-  const lineId = req.lineId;
-  let realTimeArray = await library.parseRealTime(openApiResult, lineId);
-  realTimeArray = await sortRealTimeArray(realTimeArray);
+  let realTimeArray = await library.parseRealTime(openApiResult);
+  realTimeArray = await library.addCongestion(realTimeArray);
+  realTimeArray = await library.correctArriveInfo(realTimeArray);
+  realTimeArray = await library.sortRealTimeArray(realTimeArray);
   req.realTimeArray = realTimeArray;
   next();
 };
