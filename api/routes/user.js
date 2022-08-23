@@ -36,42 +36,4 @@ export default app => {
     await userServiceInstance.deleteUser(userId);
     return res.sendStatus(204);
   });
-
-  //북마크 된 역 조회
-  route.get('/:userId/bookmarked-stations', async (req, res) => {
-    const userId = req.params.userId;
-    const result = await userServiceInstance.getBookmarkedStation(userId);
-    return res.json(result);
-  });
-
-  //북마크 역 수정
-  route.post('/:userId/bookmarked-stations', async (req, res) => {
-    const userId = req.params.userId;
-    const stationId = req.body.stationId;
-    await userServiceInstance.updateBookmark(userId, stationId);
-    return res.sendStatus(201);
-  });
-
-  //최근 사용 역 삭제
-  route.delete('/:userId/recently-used-stations', async (req, res) => {
-    const userId = req.params.userId;
-    await userServiceInstance.deleteRecently(userId);
-    return res.sendStatus(204);
-  });
-
-  //최근 사용 역 조회
-  route.get('/:userId/recently-used-stations', async (req, res) => {
-    const userId = req.params.userId;
-    const result = await userServiceInstance.getRecently(userId);
-    return res.json(result);
-  });
-
-  //최근 사용 역 생성
-  route.post('/:userId/recently-used-stations', async (req, res) => {
-    const userId = req.params.userId;
-    const stationId = req.body.stationId;
-    const lineId = req.body.lineId;
-    await userServiceInstance.createRecently(userId, stationId, lineId);
-    return res.sendStatus(201);
-  });
 };
