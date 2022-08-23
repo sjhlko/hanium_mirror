@@ -26,8 +26,11 @@ export default app => {
   route.post('/', async (req, res) => {
     const userId = req.userId;
     const stationId = req.body.stationId;
-    await BookmarkedStationServiceInstance.updateBookmark(userId, stationId);
-    return res.sendStatus(201);
+    const created = await BookmarkedStationServiceInstance.updateBookmark(
+      userId,
+      stationId,
+    );
+    return res.json({ isCreated: created });
   });
 
   //북마크 여부 확인
