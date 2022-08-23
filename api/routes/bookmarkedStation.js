@@ -34,8 +34,13 @@ export default app => {
   });
 
   //북마크 여부 확인
-  //   route.get('/:stationId', async (req, res) => {
-  //     const userId = req.userId;
-  //     const stationId = req.params.stationId;
-  //   });
+  route.get('/:stationId', async (req, res) => {
+    const userId = req.userId;
+    const stationId = req.params.stationId;
+    const result = await BookmarkedStationServiceInstance.checkBookmark(
+      userId,
+      stationId,
+    );
+    return res.json({ isBookmarked: result });
+  });
 };

@@ -70,6 +70,12 @@ export default class bookmarked_station extends Model {
     });
   }
 
+  static async findByUserIdAndStationId(userId, stationId) {
+    return await this.findOne({
+      where: { user_id: userId, station_id: stationId },
+    });
+  }
+
   static async destroyBookmark(userId, stationId, lineId) {
     return await this.destroy({
       where: { user_id: userId, station_id: stationId, line_id: lineId },

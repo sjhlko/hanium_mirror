@@ -26,4 +26,12 @@ export class BookmarkedStationService {
     }
     return created;
   }
+
+  async checkBookmark(userID, stationId) {
+    const bookmark = await models.BookmarkedStation.findByUserIdAndStationId(
+      userID,
+      stationId,
+    );
+    return bookmark != null ? true : false;
+  }
 }
